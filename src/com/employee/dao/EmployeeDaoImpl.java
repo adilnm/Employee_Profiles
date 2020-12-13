@@ -2,7 +2,10 @@ package com.employee.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.employee.entity.Employee;
 import com.employee.utils.DBConnectionUtil;
@@ -35,6 +38,33 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			e.printStackTrace();
 		}
 		return success;
+	}
+
+	@Override
+	public List<Employee> employeeList() {
+
+		List<Employee> employeesList = new ArrayList<Employee>();
+		try {
+			Connection con = DBConnectionUtil.getConnection();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM employee;");
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Employee employee = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(3),
+						rs.getString(4), rs.getString(5));
+
+				employeesList.add(employee);
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return employeesList;
 	}
 
 }

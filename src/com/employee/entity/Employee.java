@@ -17,6 +17,16 @@ public class Employee {
 		this.password = password;
 	}
 
+	public Employee(int id, String firstName, String lastName, String position, String city, String password) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.position = position;
+		this.city = city;
+		this.password = password;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -63,6 +73,12 @@ public class Employee {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", position=" + position
+				+ ", city=" + city + ", password=" + password + "]";
 	}
 
 }
