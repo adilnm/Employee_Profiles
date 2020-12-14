@@ -10,4 +10,8 @@ public interface EmployeeDao {
 	public List<Employee> employeeList();
 
 	public boolean employeeDelete(int id);
+
+	public Employee employeeDetail(int id);
+
+	public boolean employeeUpdate(Employee employee);
 }

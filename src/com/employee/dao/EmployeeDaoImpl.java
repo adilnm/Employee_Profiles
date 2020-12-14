@@ -95,4 +95,64 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return success;
 	}
 
+	@Override
+	public Employee employeeDetail(int id) {
+		Employee employee = null;
+		try {
+			Connection con = DBConnectionUtil.getConnection();
+
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM  employee WHERE id = ?");
+
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				employee = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6));
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return employee;
+	}
+
+	@Override
+	public boolean employeeUpdate(Employee employee) {
+
+		boolean success = false;
+		try {
+			Connection con = DBConnectionUtil.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(
+					"UPDATE employee SET FIRST_NAME = ?, LAST_NAME = ?, POSITION=?, CITY=?, PASSWORD=? WHERE id = ?");
+			ps.setString(1, employee.getFirstName());
+			ps.setString(2, employee.getLastName());
+			ps.setString(3, employee.getPosition());
+			ps.setString(4, employee.getCity());
+			ps.setString(5, employee.getPassword());
+			ps.setInt(6, employee.getId());
+
+			int rs = ps.executeUpdate();
+
+			if (rs > 0) {
+				success = true;
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return success;
+	}
+
 }

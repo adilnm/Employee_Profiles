@@ -23,7 +23,7 @@
 						<td>${employee.lastName}</td>
 						<td>${employee.position}</td>
 						<td>${employee.city }</td>
-						<td><a href="employeeDetail?id=${employee.id}">Detail</a>   <a href="employeeDelete?employee_id=${employee.id}">Delete</a></td>
+						<td><a href="employeeDetail?employee_id=${employee.id}">Detail</a><a href="employeeDelete?employee_id=${employee.id}">Delete</a><a href="edit?employee_id=${employee.id}">Edit</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
