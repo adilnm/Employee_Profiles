@@ -8,4 +8,6 @@ public interface EmployeeDao {
 	public boolean employeeRegistration(Employee employee);
 
 	public List<Employee> employeeList();
+
+	public boolean employeeDelete(int id);
 }

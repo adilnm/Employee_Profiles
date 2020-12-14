@@ -67,4 +67,32 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employeesList;
 	}
 
+	@Override
+	public boolean employeeDelete(int id) {
+
+		boolean success = false;
+		try {
+			Connection con = DBConnectionUtil.getConnection();
+
+			PreparedStatement ps = con.prepareStatement("delete FROM  employee WHERE id = ?");
+
+			ps.setInt(1, id);
+
+			int rs = ps.executeUpdate();
+
+			if (rs > 0) {
+				success = true;
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return success;
+	}
+
 }
