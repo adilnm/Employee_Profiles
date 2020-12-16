@@ -51,8 +51,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Employee employee = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(3),
-						rs.getString(4), rs.getString(5));
+				Employee employee = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6));
 
 				employeesList.add(employee);
 			}

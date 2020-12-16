@@ -10,10 +10,12 @@
 	<%@ include file="header.jspf" %>
 	
 	<div class="container">
-		<h4>First Name: ${employee.firstName }</h4>
-		<h4>Last Name: ${employee.lastName }</h4>
-		<h4>Position: ${employee.position }</h4>
-		<h4>City: ${employee.city}</h4>
+		<ul class="list-group">
+ 	 		 <li class="list-group-item disabled">First Name:  ${employee.firstName }</li>
+  			 <li class="list-group-item">Last Name:  ${employee.lastName }</li>
+  			 <li class="list-group-item">Position:  ${employee.position }</li>
+  			 <li class="list-group-item">City:  ${employee.city}</li>
+		</ul>
 	</div>
 </body>
 </html>

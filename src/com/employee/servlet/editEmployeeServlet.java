@@ -31,6 +31,7 @@ public class editEmployeeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		boolean success;
 		int id = Integer.parseInt(request.getParameter("id"));
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -40,8 +41,15 @@ public class editEmployeeServlet extends HttpServlet {
 		Employee employee = new Employee(id, firstName, lastName, position, city, password);
 
 		EmployeeDao dao = new EmployeeDaoImpl();
-		dao.employeeUpdate(employee);
-		request.getRequestDispatcher("update.jsp").forward(request, response);
+		success = dao.employeeUpdate(employee);
+
+		if (success) {
+			request.setAttribute("updateMessage", "Your selected employee got updated");
+		} else {
+			request.setAttribute("updateMessage", "ERROR");
+		}
+
+		request.getRequestDispatcher("list").forward(request, response);
 	}
 
 }

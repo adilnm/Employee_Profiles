@@ -17,10 +17,17 @@ public class EmployeeDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		boolean success;
 		int empId = Integer.parseInt(request.getParameter("employee_id"));
 
 		EmployeeDao dao = new EmployeeDaoImpl();
-		dao.employeeDelete(empId);
+		success = dao.employeeDelete(empId);
+
+		if (success) {
+			request.setAttribute("deleteMessage", "Your selected employee got deleted");
+		} else {
+			request.setAttribute("deleteMessage", "ERROR");
+		}
 
 		request.getRequestDispatcher("list").forward(request, response);
 	}

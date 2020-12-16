@@ -18,6 +18,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		boolean success;
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String position = request.getParameter("position");
@@ -28,7 +29,15 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 
 		EmployeeDao dao = new EmployeeDaoImpl();
 
-		dao.employeeRegistration(emp);
+		success = dao.employeeRegistration(emp);
+
+		if (success) {
+			request.setAttribute("message", "You successfully added a new employee");
+		} else {
+			request.setAttribute("mmessage", "ERROR");
+		}
+
+		request.getRequestDispatcher("list").forward(request, response);
 	}
 
 }
