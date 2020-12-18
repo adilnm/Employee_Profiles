@@ -9,6 +9,9 @@
 <body>
 	<%@ include file="header.jspf" %>
 	<div class="container">
+	<c:if test="${message ne null}">
+ 		<h5 class="alert alert-danger">${message}</h5>
+	</c:if>
 	<form action="login" method="post">
 		<div class="form-group">
 			<label class="font-weight-bold">First Name</label>
