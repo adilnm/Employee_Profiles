@@ -155,4 +155,32 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return success;
 	}
 
+	@Override
+	public Employee employeeLogin(String firstName, String password) {
+
+		Employee employee = null;
+		try {
+			Connection con = DBConnectionUtil.getConnection();
+
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM  employee WHERE firstName, password=?");
+			ps.setString(1, firstName);
+			ps.setString(2, password);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				employee = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6));
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return employee;
+	}
+
 }
