@@ -7,14 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.employee.dao.EmployeeDao;
 import com.employee.dao.EmployeeDaoImpl;
 import com.employee.entity.Employee;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +27,8 @@ public class LoginServlet extends HttpServlet {
 		Employee employee = dao.employeeLogin(firstName, password);
 
 		if (employee != null) {
-			request.setAttribute("employee", employee);
+			HttpSession session = request.getSession();
+			session.setAttribute("employee", employee);
 
 			request.getRequestDispatcher("list").forward(request, response);
 		} else {
