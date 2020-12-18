@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 		if (employee != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("employee", employee);
-
+			System.out.println(session);
 			request.getRequestDispatcher("list").forward(request, response);
 		} else {
 			request.setAttribute("message", "Your name or password is not correct");
