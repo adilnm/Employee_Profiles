@@ -162,7 +162,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		try {
 			Connection con = DBConnectionUtil.getConnection();
 
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM  employee WHERE firstName, password=?");
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM  employee WHERE first_Name=? and password=?");
 			ps.setString(1, firstName);
 			ps.setString(2, password);
 
