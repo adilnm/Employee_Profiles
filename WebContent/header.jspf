@@ -32,7 +32,7 @@
   </div>
   		<c:choose>
 			<c:when test="${sessionScope.employee ne null}">
-				<a href="logout"><button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button></a>
+				<span style="color:white;padding: 8px;">${sessionScope.employee.firstName}</span><a href="logout"><button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button></a>
 			</c:when>
 			<c:otherwise>
 				<a href="login.jsp"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button></a>
